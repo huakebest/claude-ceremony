@@ -6,11 +6,12 @@
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File build.ps1
-.\out\ClaudeBgm.exe
+powershell -ExecutionPolicy Bypass -File out\install.ps1
 ```
 
-第一次运行会自己写开机自启项（`HKCU\...\Run` → `ClaudeBgm.exe --startup`）。
-编出来在 `out\`，整个文件夹可以搬到任意位置，`assets\loop.wav` 必须跟着。
+`out\install.ps1` 装到 `%LOCALAPPDATA%\Programs\ClaudeWorkMusic\`，写开机自启（`HKCU\...\Run` → `ClaudeBgm.exe --startup`），然后启动。
+参数：`-Dest 目录` 换位置、`-NoStart` 只装不启动、`-Force` 已装过另一份时强制装。
+不想自己编就直接下 [Releases](https://github.com/huakebest/claude-ceremony/releases/latest) 里的成品包。
 
 ## 用法
 

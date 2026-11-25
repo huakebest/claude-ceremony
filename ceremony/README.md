@@ -12,12 +12,14 @@ Claude 桌面端启动时先铺一层开屏动画（约 12 秒后透出界面）
 powershell -ExecutionPolicy Bypass -File build.ps1
 ```
 
-编译产物在 `out\`（exe + assets）。开机自启：
+编译产物在 `out\`（exe + assets + install.ps1），装好并登记开机自启：
 
 ```powershell
-$p = (Resolve-Path .\out\ClaudeBootAnimation.exe).Path
-Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name ClaudeBootAnimation -Value "`"$p`""
+powershell -ExecutionPolicy Bypass -File out\install.ps1
 ```
+
+装到 `%LOCALAPPDATA%\Programs\ClaudeBootAnimation\`。参数：`-Dest 目录` 换位置、`-NoStart` 只装不启动、`-Force` 已装过另一份时强制装。
+不想自己编就直接下 [Releases](https://github.com/huakebest/claude-ceremony/releases/latest) 里的成品包。
 
 托盘图标（✨）右键可以开关开屏 / BGM / 循环背景、调不透明度和音量、播放一次。
 

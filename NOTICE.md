@@ -3,7 +3,7 @@
 ## 上游
 
 `ceremony/` 基于 [wynneceles/ai-boot-animations](https://github.com/wynneceles/ai-boot-animations)
-的 `claude/windows` 部分（GPL-3.0），在本地做了三处改动，改动清单见
+的 `claude/windows` 部分（GPL-3.0），在本地做了四处改动，改动清单见
 [`ceremony/CHANGES.md`](ceremony/CHANGES.md)。
 按 GPL-3.0 要求，本目录同样以 GPL-3.0 发布并提供完整源码。
 上游作者很厉害，这个开屏的点子、动画和大部分代码都是他的。
