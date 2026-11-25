@@ -1,0 +1,9 @@
+# 编译输出与运行数据
+out/
+_data/
+*.log
+*.user
+.vs/
+# 本地临时
+_tmp/
+node_modules/
