@@ -7,3 +7,6 @@ _data/
 # 本地临时
 _tmp/
 node_modules/
+
+# 本地构建与打包产物（发布包走 GitHub Releases）
+dist/

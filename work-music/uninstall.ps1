@@ -1,4 +1,4 @@
-# ClaudeBgm 卸载：停进程、删自启、删程序目录
+﻿# ClaudeBgm 卸载：停进程、删自启、删程序目录
 # 用法：powershell -ExecutionPolicy Bypass -File uninstall.ps1 [-KeepData]
 param([switch]$KeepData)
 $ErrorActionPreference = 'SilentlyContinue'

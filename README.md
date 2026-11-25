@@ -11,6 +11,20 @@
 两个程序都是纯 C#，用 Windows 自带的 .NET Framework 编译器编译，**不需要装 SDK，没有任何第三方依赖**。
 开屏动画**不修改 Claude 本体**，是个独立浮层；不想要了随时卸载。
 
+## 下载（不用自己编译）
+
+装好的成品在 [Releases](https://github.com/huakebest/claude-ceremony/releases/latest) 里，下载解压 → 双击 `安装.cmd` → 完事。
+**需要 Windows 10 / 11**，不需要管理员权限，不联网。
+
+| 包 | 大小 | 内容 |
+|---|---|---|
+| [`claude-ceremony-1.0.0-bundle.zip`](https://github.com/huakebest/claude-ceremony/releases/latest/download/claude-ceremony-1.0.0-bundle.zip) | 78 MB | **两个都装**，双击一个 `安装.cmd` 搞定（推荐） |
+| [`ClaudeCeremony-1.0.0.zip`](https://github.com/huakebest/claude-ceremony/releases/latest/download/ClaudeCeremony-1.0.0.zip) | 51 MB | 只要开机仪式动画 |
+| [`ClaudeWorkMusic-1.0.0.zip`](https://github.com/huakebest/claude-ceremony/releases/latest/download/ClaudeWorkMusic-1.0.0.zip) | 27 MB | 只要工作背景音乐 |
+
+双击 `安装.cmd` 时如果弹出「Windows 已保护你的电脑」，点「更多信息」→「仍要运行」；那不是病毒提示，是没签名的新下载文件都会有的提示。
+装到 `%LOCALAPPDATA%\Programs\`，自启项写在当前用户注册表，卸载运行包里的 `卸载.cmd`，一切都在用户目录内。
+
 ## 它们怎么配合
 
 ```
@@ -28,15 +42,16 @@ Claude 退出
 两个目录各自独立，可以只装一个。
 
 ```powershell
-# 开机仪式
+# 编 + 装一条龙（编到 out\，再运行 out\ 里的 install.ps1）
 powershell -ExecutionPolicy Bypass -File ceremony\build.ps1
-# 编出来在 ceremony\out\，把 ClaudeBootAnimation 加进
-# HKCU\Software\Microsoft\Windows\CurrentVersion\Run 即可开机自启
+powershell -ExecutionPolicy Bypass -File ceremony\out\install.ps1
 
-# 工作音乐
 powershell -ExecutionPolicy Bypass -File work-music\build.ps1
-# 编出来在 work-music\out\，运行一次就会自己写自启项
+powershell -ExecutionPolicy Bypass -File work-music\out\install.ps1
 ```
+
+`install.ps1` 干的事：停旧进程 → 拷到 `%LOCALAPPDATA%\Programs\<名字>\` → 写 `HKCU\...\Run` 自启 → 启动。
+参数：`-Dest 目录`（换安装位置）、`-NoStart`（只装不启动）、`-Force`（已经装过另一份时强制装）。
 
 需要 Windows 10/11 和 .NET Framework 4.x（系统自带）。
 
